@@ -6,7 +6,7 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 20:14:59 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/04 22:48:06 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/06 17:38:53 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	get_str_size(int ac, char **av)
 		checker = 0;
 		while (av[i][checker])
 		{
-			if (av[i][checker] == ' ')
+			if (av[i][checker] != ' ')
 				break ;
 			checker++;
 		}
-		if (av[i][checker] == 0)
+		if (av[i][checker] == '\0')
 			print_err(1);
 		spl_str = ft_split(av[i], ' ');
 		size += get_size_spl_str(spl_str);
@@ -59,7 +59,7 @@ int	*ft_av_to_arr(int ac, char **av, int size)
 		ft_free_str(spl_str);
 		ac_i++;
 	}
-	new_arr[arr_i] = '\0';
+/*	new_arr[arr_i] = '\0';*/
 	return (new_arr);
 }
 
@@ -105,7 +105,7 @@ void	ft_check_arr_sort(int *arr, int size, int idx)
 			}
 			i++;
 		}
-		if (arr[idx] == arr[idx + 1])
+		if (idx != 0 && arr[idx] == arr[idx - 1])
 			print_err(1);
 		idx++;
 	}

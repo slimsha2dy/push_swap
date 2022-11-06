@@ -6,7 +6,7 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 21:15:11 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/04 22:13:36 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/06 17:42:58 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void	pb(t_info *info)
 	if (info->size_b == 0)
 	{
 		tmp->next = NULL;
+		info->top_b = tmp;
+		info->bot_b = tmp;
+	}
+	else
+	{
+		tmp->next = info->bot_b;
 		info->top_b->prev = tmp;
 		info->top_b = tmp;
 	}

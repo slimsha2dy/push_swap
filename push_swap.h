@@ -6,13 +6,14 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 19:50:34 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/04 22:41:13 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/06 16:20:34 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct s_num
 {

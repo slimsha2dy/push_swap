@@ -6,7 +6,7 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 19:54:24 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/04 22:43:48 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/06 16:55:18 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int ac, char **av)
 	arr_size = get_str_size(ac, av);
 	num_arr = ft_av_to_arr(ac, av, arr_size);
 	ft_arr_to_stack(info, num_arr, arr_size);
+	ft_check_arr_sort(num_arr, arr_size, 0);
 	info->arr = (int *)num_arr;
 	ft_sort(info);
 	return (0);
