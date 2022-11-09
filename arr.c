@@ -6,78 +6,77 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 20:14:59 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/06 17:38:53 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/07 21:12:33 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_str_size(int ac, char **av)
+int	get_str_size(int argc, char **argv)
 {
-	int		i;
+	int		idx;
 	int		size;
 	int		checker;
-	char	**spl_str;
+	char	**split_str;
 
-	i = 0;
+	idx = 0;
 	size = 0;
-	while (i < ac)
+	while (idx < argc)
 	{
 		checker = 0;
-		while (av[i][checker])
+		while (argv[idx][checker])
 		{
-			if (av[i][checker] != ' ')
+			if (argv[idx][checker] != ' ')
 				break ;
 			checker++;
 		}
-		if (av[i][checker] == '\0')
-			print_err(1);
-		spl_str = ft_split(av[i], ' ');
-		size += get_size_spl_str(spl_str);
-		ft_free_str(spl_str);
-		i++;
+		if (argv[idx][checker] == '\0')
+			print_error(1);
+		split_str = ft_split(argv[idx], ' ');
+		size += get_size_split_str(split_str);
+		ft_free_str(split_str);
+		idx++;
 	}
 	return (size - 1);
 }
 
-int	*ft_av_to_arr(int ac, char **av, int size)
+int	*ft_argv_to_arr(int argc, char **argv, int size)
 {
-	int		ac_i;
-	int		arr_i;
+	int		argc_idx;
+	int		arr_idx;
 	int		*new_arr;
-	char	**spl_str;
+	char	**split_str;
 
-	ac_i = 1;
-	arr_i = 0;
+	argc_idx = 1;
+	arr_idx = 0;
 	new_arr = (int *)malloc(sizeof(int) * size);
 	if (!new_arr)
-		print_err(1);
-	while (ac_i < ac)
+		print_error(1);
+	while (argc_idx < argc)
 	{
-		spl_str = ft_split(av[ac_i], ' ');
-		set_str_to_arr(new_arr, &arr_i, spl_str);
-		ft_free_str(spl_str);
-		ac_i++;
+		split_str = ft_split(argv[argc_idx], ' ');
+		set_str_to_arr(new_arr, &arr_idx, split_str);
+		ft_free_str(split_str);
+		argc_idx++;
 	}
-/*	new_arr[arr_i] = '\0';*/
 	return (new_arr);
 }
 
 void	ft_arr_to_stack(t_info *info, int *arr, int size)
 {
 	t_num	*new_node;
-	int		i;
+	int		idx;
 
-	i = 0;
-	while (i < size)
+	idx = 0;
+	while (idx < size)
 	{
 		new_node = ft_stack_new();
 		info->size_a += 1;
-		info->bot_a->content = (int)arr[i];
+		info->bot_a->content = (int)arr[idx];
 		info->bot_a->next = new_node;
 		new_node->prev = info->bot_a;
 		info->bot_a = new_node;
-		i++;
+		idx++;
 	}
 	info->bot_a = info->bot_a->prev;
 	info->bot_a->next = NULL;
@@ -105,10 +104,10 @@ void	ft_check_arr_sort(int *arr, int size, int idx)
 			}
 			i++;
 		}
-		if (idx != 0 && arr[idx] == arr[idx - 1])
-			print_err(1);
+		if (idx != 0 && arr[size - idx] == arr[size - idx - 1])
+			print_error(1);
 		idx++;
 	}
 	if (checker == 0)
-		print_err(-1);
+		print_error(-1);
 }

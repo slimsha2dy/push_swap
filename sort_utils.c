@@ -6,7 +6,7 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 21:15:06 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/04 22:39:49 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/07 17:08:59 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 void	ft_sort_3div(t_info *info)
 {
-	int	i;
+	int	idx;
 	int	pv1;
 	int	pv2;
 
-	i = info->size_a / 3;
-	pv1 = info->arr[i];
-	i = info->size_a * 2 / 3;
-	pv2 = info->arr[i];
-	i = info->size_a;
-	while (i)
+	idx = info->size_a / 3;
+	pv1 = info->arr[idx];
+	idx = info->size_a * 2 / 3;
+	pv2 = info->arr[idx];
+	if (pv1 > pv2)
+	{
+		pv2 = pv1;
+		pv1 = info->arr[idx];
+	}
+	idx = info->size_a;
+	while (idx)
 	{
 		ft_sort_3div_instruct(info, pv1, pv2);
-		i--;
+		idx--;
 	}
 }
 
@@ -45,29 +50,29 @@ void	ft_sort_3div_instruct(t_info *info, int pv1, int pv2)
 
 void	get_min_rotate(t_info *info, int *a, int *b)
 {
-	int		a_loc;
-	int		b_loc;
-	int		i;
+	int		a_location;
+	int		b_location;
+	int		idx;
 	t_num	*stack_b;
 	int		num;
 
-	i = 0;
+	idx = 0;
 	stack_b = info->top_b;
-	while (i < info->size_b)
+	while (idx < info->size_b)
 	{
 		num = stack_b->content;
-		a_loc = set_a_location(num, info);
-		if (i >= (info->size_b + 1) / 2)
-			b_loc = (info->size_b - i) * -1;
+		a_location = set_a_location(num, info);
+		if (idx >= (info->size_b + 1) / 2)
+			b_location = (info->size_b - idx) * -1;
 		else
-			b_loc = i;
-		if (i == 0 || ft_get_faster(*a, *b, a_loc, b_loc))
+			b_location = idx;
+		if (idx == 0 || ft_get_faster(*a, *b, a_location, b_location))
 		{
-			*a = a_loc;
-			*b = b_loc;
+			*a = a_location;
+			*b = b_location;
 		}
 		stack_b = stack_b->next;
-		i++;
+		idx++;
 	}
 }
 

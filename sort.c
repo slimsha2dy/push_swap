@@ -6,7 +6,7 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 21:05:01 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/04 22:43:16 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/07 16:25:56 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ void	ft_sort(t_info *info)
 			sa(info);
 	}
 	else if (info->size_a == 3)
+	{
 		ft_sort_three_case(info);
+	}
 	else
+	{
 		ft_sort_rest(info);
+	}
 }
 
 void	ft_sort_three_case(t_info *info)

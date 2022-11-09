@@ -6,7 +6,7 @@
 /*   By: hwichoi <hwichoi@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 21:15:11 by hwichoi           #+#    #+#             */
-/*   Updated: 2022/11/06 17:42:58 by hwichoi          ###   ########.fr       */
+/*   Updated: 2022/11/07 16:26:51 by hwichoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sa(t_info *info)
 		return ;
 	tmp = info->top_a->content;
 	info->top_a->content = info->top_a->next->content;
-	info->top_a->content = tmp;
+	info->top_a->next->content = tmp;
 	write(1, "sa\n", 3);
 }
 
@@ -32,8 +32,23 @@ void	sb(t_info *info)
 		return ;
 	tmp = info->top_b->content;
 	info->top_b->content = info->top_b->next->content;
-	info->top_b->content = tmp;
+	info->top_b->next->content = tmp;
 	write(1, "sb\n", 3);
+}
+
+void	ss(t_info *info)
+{
+	int	tmp;
+
+	if (info->size_a < 2 || info->size_b < 2)
+		return ;
+	tmp = info->top_a->content;
+	info->top_a->content = info->top_a->next->content;
+	info->top_a->next->content = tmp;
+	tmp = info->top_b->content;
+	info->top_b->content = info->top_b->next->content;
+	info->top_b->next->content = tmp;
+	write(1, "ss\n", 1);
 }
 
 void	pa(t_info *info)
@@ -85,7 +100,7 @@ void	pb(t_info *info)
 	}
 	else
 	{
-		tmp->next = info->bot_b;
+		tmp->next = info->top_b;
 		info->top_b->prev = tmp;
 		info->top_b = tmp;
 	}
